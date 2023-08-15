@@ -1,0 +1,74 @@
+/* Styles for the modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-container {
+    width: 350px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .modal-header {
+    padding: 10px;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .close-button {
+    cursor: pointer;
+  }
+  
+  .modal-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .image-section {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .image-section img {
+    width: 271px;
+    height: 176px;
+    border-radius: 9%;
+  }
+  
+  .info-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+  }
+  
+  .info-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .info-key {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .info-value {
+    margin-left: 5px;
+  }
+  
+  

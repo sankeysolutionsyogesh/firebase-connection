@@ -1,0 +1,84 @@
+<div class="container">
+    <form class="leave-form" #compliantForm="ngForm" (ngSubmit)="onSubmit(compliantForm)">
+
+        <mat-form-field>
+            <label for="compType">Type of Complaint</label>
+            <mat-select id="compType" name="compType" ngModel required>
+                <mat-option disabled selected value="">Select Complaint Type</mat-option>
+                <mat-option value="noise">Noise Disturbance</mat-option>
+                <mat-option value="maintenance">Maintenance Issue</mat-option>
+                <mat-option value="facilities">Facilities Problem</mat-option>
+                <mat-option value="security">Security Concern</mat-option>
+                <mat-option value="hygiene">Hygiene Issue</mat-option>
+                <mat-option value="other">Others</mat-option>
+            </mat-select>
+            <mat-error
+                *ngIf="compliantForm.controls['compType']?.touched && compliantForm.controls['compType'].errors?.['required']">
+                Complaint Type is required.
+            </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <label for="severity">Severity Level</label>
+            <mat-select id="severity" name="severity" ngModel required>
+                <mat-option disabled selected value="">Select Severity Level</mat-option>
+                <mat-option value="low">Low</mat-option>
+                <mat-option value="moderate">Moderate</mat-option>
+                <mat-option value="high">High</mat-option>
+                <mat-option value="urgent">Urgent</mat-option>
+            </mat-select>
+            <mat-error
+                *ngIf="compliantForm.controls['severity']?.touched && compliantForm.controls['severity'].errors?.['required']">
+                Severity Level is required.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <label for="location">Location of Incident or Room Number</label>
+            <input matInput type="text" id="location" name="location" ngModel required>
+            <mat-error
+                *ngIf="compliantForm.controls['location']?.touched && compliantForm.controls['location'].errors?.['required']">
+                Location of Incident or Room Number is required.
+            </mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field>
+            <label for="relativename">Relative Name</label>
+            <input matInput type="text" id="relativename" name="relativename" ngModel required pattern="^[a-zA-Z\s]+$">
+            <mat-error
+                *ngIf="compliantForm.controls['relativename']?.touched && compliantForm.controls['relativename'].errors?.['required']">
+                Relative Name is required.
+            </mat-error>
+            <mat-error
+                *ngIf="compliantForm.controls['relativename']?.touched && compliantForm.controls['relativename'].errors?.['pattern']">
+                Relative Name should contain only letters (a-z, A-Z).
+            </mat-error>
+
+
+        </mat-form-field>
+
+
+        <label for="relativename">Attachment any photo</label>
+        <input type="file" id="attachments" name="attachments" accept="image/jpeg, image/png"
+            (change)="onFileSelected($event)" #fileInput>
+        <mat-error
+            *ngIf="complaintForm.controls['attachments']?.touched && complaintForm.controls['attachments'].errors?.['required']">
+            Attachments are required.
+        </mat-error>
+        <mat-error
+            *ngIf="complaintForm.controls['attachments']?.touched && complaintForm.controls['attachments'].errors?.['fileFormat']">
+            Invalid file format. Only PNG and JPEG files are allowed.
+        </mat-error>
+
+        <button mat-raised-button color="accent" type="submit" [disabled]="!compliantForm.valid">
+            <ng-container *ngIf="!loading">Submit</ng-container>
+            <div *ngIf="loading" class="custom-spinner-container">
+                <mat-spinner></mat-spinner>
+            </div>
+        </button>
+
+        <button mat-raised-button color="warn" type="button" (click)="resetForm(compliantForm)">Reset</button>
+    </form>
+</div>

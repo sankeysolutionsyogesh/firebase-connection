@@ -1,0 +1,18 @@
+<mat-toolbar class="nav-bar-container">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <div class="nav-bar">
+        <!-- <a routerLink="/" (click)="LogoutMenu()">Logout</a> -->
+        <a *ngFor="let route of pagesRoutes" [routerLink]="route.link">{{ route.label }}</a>
+    </div>
+
+
+    <button mat-icon-button class="example-icon logout-icon" aria-label="Logout" (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button> -->
+</mat-toolbar>

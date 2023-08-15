@@ -1,0 +1,35 @@
+<div class="student-container">
+    <!-- Toggle button to toggle in adduser and displayStudent -->
+    {{'Show Students'}}
+    <mat-slide-toggle [(ngModel)]="removeAddStudentPage">
+        {{ 'Add Student' }}
+    </mat-slide-toggle>
+    <br><br>
+
+
+    <!-- Display body  -->
+    <ng-container *ngIf="!removeAddStudentPage; else addStudent">
+        <app-student-list></app-student-list>
+        <!-- <app-getstudentlist [StudentData]="StudentData" (Delete)="Deleteaction($event)" (Edit)="Editaction($event)"></app-getstudentlist>
+        <app-pagination [totalPages]="totalPages" [currentPage]="currentPage" [nexPage]="nexPage"
+            [previousPage]="previousPage" (nextPage)="loadNextPage()" (prevPage)="loadPrevPage()">
+        </app-pagination> -->
+        <br><br><br>
+    </ng-container>
+    <ng-template #addStudent>
+        <h2>Add New student</h2>
+        <br>
+        <app-form-component></app-form-component>
+    </ng-template>
+
+    <br>
+
+    <h2>Student Complaints</h2>
+
+    <app-student-complaint></app-student-complaint>
+
+    <h2>Student Leaves</h2>
+
+    <app-student-leaves></app-student-leaves>
+
+</div>

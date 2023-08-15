@@ -1,0 +1,45 @@
+<form #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)">
+    <mat-form-field>
+        <label for="studentName">Student Name</label>
+        <input matInput type="text" id="studentName" name="studentName" ngModel required
+            pattern="^[a-zA-Z\s]+$">
+        <mat-error
+            *ngIf="studentForm.controls['studentName']?.touched && studentForm.controls['studentName'].errors?.['required']">
+            Student Name is required.
+        </mat-error>
+        <mat-error
+            *ngIf="studentForm.controls['studentName']?.touched && studentForm.controls['studentName'].errors?.['pattern']">
+            Student Name should contain only letters (a-z, A-Z).
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <label for="gender">Gender</label>
+        <mat-select id="gender" name="gender" ngModel required>
+            <mat-option disabled selected value="">Select Gender</mat-option>
+            <mat-option value="M">Male</mat-option>
+            <mat-option value="F">Female</mat-option>
+        </mat-select>
+        <mat-error
+            *ngIf="studentForm.controls['gender']?.touched && studentForm.controls['gender'].errors?.['required']">
+            Gender is required.
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <label for="roomNumber">Room Number</label>
+        <input matInput type="text" id="roomNumber" name="roomNumber" ngModel
+            (input)="limitRoomNumbert($event)" required>
+        <mat-error
+            *ngIf="studentForm.controls['roomNumber']?.touched && studentForm.controls['roomNumber'].errors?.['required']">
+            Room Number is required.
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <label for="feesPaid">Fees Paid</label>
+        <input matInput type="number" id="feesPaid" name="feesPaid" (input)="limitFeePaid($event)" ngModel>
+        <mat-error *ngIf="studentForm.controls['feesPaid']?.hasError('required')">
+            Fees Paid is required.
+        </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!studentForm.valid">Submit</button>
+    <button mat-raised-button type="button" (click)="resetForm(studentForm)">Reset</button>
+</form>
