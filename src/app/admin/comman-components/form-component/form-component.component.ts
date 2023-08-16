@@ -23,9 +23,11 @@ export class FormComponentComponent {
 
       const data = {
         student_name: form.value.studentName,
+        student_email: form.value.studentEmail,
         gender: form.value.gender,
         room_number: parseInt(form.value.roomNumber),
         fees_paid: parseInt(form.value.feesPaid),
+        created_at: new Date().toISOString(),
       };
 
       console.log("formdata", data)

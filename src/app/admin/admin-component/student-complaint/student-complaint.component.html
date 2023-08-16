@@ -4,9 +4,14 @@
     <table mat-table class="mat-elevation-z8" [dataSource]="StudentComplaints">
      
 
+        <ng-container matColumnDef="cid">
+            <th mat-header-cell *matHeaderCellDef>Complaint Id</th>
+            <td mat-cell *matCellDef="let student">{{ student.complaintId }}</td>
+        </ng-container>
+
         <ng-container matColumnDef="rname">
             <th mat-header-cell *matHeaderCellDef>Complaint Reason</th>
-            <td mat-cell *matCellDef="let student">{{ student.rname }}</td>
+            <td mat-cell *matCellDef="let student">{{ student.complaint.length > 250 ? (student.complaint | slice:0:150) + '...' : student.complaint }}</td>
         </ng-container>
 
         <ng-container matColumnDef="type">

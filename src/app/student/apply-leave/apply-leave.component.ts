@@ -48,7 +48,7 @@ export class ApplyLeaveComponent {
         this.loading = true;
         const data = {
 
-          startDate, endDate, ...this.leaveForm.value
+          startDate, endDate, ...this.leaveForm.value, applied_at : new Date().toISOString()
 
         }
         console.log(data);

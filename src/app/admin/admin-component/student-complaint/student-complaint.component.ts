@@ -13,14 +13,14 @@ export class StudentComplaintComponent {
 
   StudentComplaints: any[] = [];
 
-  displayedColumns: string[] = ['rname', 'type', 'severity', 'actions'];
+  displayedColumns: string[] = ['cid','rname', 'type', 'severity', 'actions'];
 
   constructor(private studentservice: StudentServiceService, private _snackBar: MatSnackBar, public dialog: MatDialog) {
     this.getComplaintAction()
   }
 
   getComplaintAction() {
-    this.studentservice.GetStudentsComplaints().subscribe(data => {
+    this.studentservice.getStudentsComplaint().subscribe(data => {
       this.StudentComplaints = data;
       console.log("data", data)
     });

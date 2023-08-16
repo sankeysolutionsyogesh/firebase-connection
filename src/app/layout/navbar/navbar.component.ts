@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { LoginDataService } from 'src/services/login-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,8 +10,13 @@ import { Component, Input } from '@angular/core';
 })
 export class NavbarComponent {
     @Input() pagesRoutes:any = [];
-    
-    logout(){
+    @Input() titlename:string  | undefined = "";
+    @Input() role:string = "";
 
+    
+    constructor(private loginService : LoginDataService, private router: Router){}
+
+    logout(){
+      this.loginService.logout()
     }
 }

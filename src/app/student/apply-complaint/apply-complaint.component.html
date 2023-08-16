@@ -45,18 +45,13 @@
         </mat-form-field>
 
         <mat-form-field>
-            <label for="relativename">Relative Name</label>
-            <input matInput type="text" id="relativename" name="relativename" ngModel required pattern="^[a-zA-Z\s]+$">
+            <label for="complaint">Complaint</label>
+            <input matInput type="text" id="complaint" name="complaint" ngModel required>
             <mat-error
-                *ngIf="compliantForm.controls['relativename']?.touched && compliantForm.controls['relativename'].errors?.['required']">
-                Relative Name is required.
+                *ngIf="compliantForm.controls['complaint']?.touched && compliantForm.controls['complaint'].errors?.['required']">
+                Complaint is required.
             </mat-error>
-            <mat-error
-                *ngIf="compliantForm.controls['relativename']?.touched && compliantForm.controls['relativename'].errors?.['pattern']">
-                Relative Name should contain only letters (a-z, A-Z).
-            </mat-error>
-
-
+           
         </mat-form-field>
 
 

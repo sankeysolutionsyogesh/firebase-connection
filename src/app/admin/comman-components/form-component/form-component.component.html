@@ -13,6 +13,17 @@
         </mat-error>
     </mat-form-field>
     <mat-form-field>
+        <label for="studentEmail">Student Email</label>
+        <input matInput type="email" id="studentEmail" name="studentEmail" ngModel required
+               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+        <mat-error *ngIf="studentForm.controls['studentEmail']?.touched && studentForm.controls['studentEmail'].errors?.['required']">
+            Email is required.
+        </mat-error>
+        <mat-error *ngIf="studentForm.controls['studentEmail']?.touched && studentForm.controls['studentEmail'].errors?.['pattern']">
+            Please enter a valid email address.
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
         <label for="gender">Gender</label>
         <mat-select id="gender" name="gender" ngModel required>
             <mat-option disabled selected value="">Select Gender</mat-option>

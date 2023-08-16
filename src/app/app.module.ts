@@ -45,6 +45,7 @@ import { StudentComplaintComponent } from './admin/admin-component/student-compl
 import { StudentLeavesComponent } from './admin/admin-component/student-leaves/student-leaves.component';
 import {MatCardModule} from '@angular/material/card';
 import { SinglecomplaintComponent } from './admin/admin-component/singlecomplaint/singlecomplaint.component';
+import { ViewleavesComponent } from './admin/admin-component/viewleaves/viewleaves.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { SinglecomplaintComponent } from './admin/admin-component/singlecomplain
     CkeditorComponent,
     StudentComplaintComponent,
     StudentLeavesComponent,
-    SinglecomplaintComponent
+    SinglecomplaintComponent,
+    ViewleavesComponent
   ],
   imports: [
     BrowserModule,

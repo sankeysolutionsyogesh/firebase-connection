@@ -9,8 +9,10 @@ import { Observable } from 'rxjs';
 export class StudentServiceService {
 
   totalStudents: any = null;
+  lastSid : number = 0;
 
   constructor(private db: AngularFireDatabase) {
+    this.getlastdata()
     this.GetStudentsList().subscribe(data => {
       this.totalStudents = data.length;
     });
@@ -20,13 +22,32 @@ export class StudentServiceService {
     return this.db.list('students-list').valueChanges();
   }
 
-  GetStudentsComplaints(): Observable<any[]> {
+  getStudentsComplaint(): Observable<any[]>{
     return this.db.list('students-complaint').valueChanges();
   }
 
+  getStudentsleaves(): Observable<any[]>{
+    return this.db.list('students-leave').valueChanges();
+  }
+
+  getlastdata() {
+    const studentsRef = this.db.list('students-list', ref =>
+      ref.orderByChild('created_at').limitToLast(1)
+    );
+
+    studentsRef.snapshotChanges().subscribe(data => {
+      if (data.length > 0) {
+        const lastAddedStudent:any = data[0].payload.val();
+        this.lastSid = lastAddedStudent.sid
+
+        console.log('Last added student:', lastAddedStudent);
+      }
+    });
+
+  }
 
   registerStudent(data: any): Promise<void> {
-    data.sid = this.totalStudents + 1;
+    data.sid = this.lastSid + 1;
     const studentsRef = this.db.list('students-list');
     return new Promise<void>((resolve, reject) => {
       studentsRef.push(data)
@@ -42,6 +63,14 @@ export class StudentServiceService {
     });
   }
 
+  getSingleLeaves(id:any){
+    const studentsRef = this.db.list('students-leave', ref =>
+      ref.orderByChild('leaveId').equalTo(id)
+    );
+
+    return studentsRef.valueChanges();
+
+  }
   deleteStudent(id: any) {
 
     const studentsRef = this.db.list('students-list', ref =>

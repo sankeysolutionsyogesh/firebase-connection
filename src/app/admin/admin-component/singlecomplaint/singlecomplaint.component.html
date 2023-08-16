@@ -4,28 +4,73 @@
             <span class="close-button" (click)="onNoClick()">&times;</span>
         </div>
         <div class="modal-content">
-            <div class="image-section">
+            <div *ngIf="Complaint.fileurl" class="image-section">
                 <img [src]="Complaint.fileurl" alt="Student Image">
             </div>
             <div class="info-section">
-                <div class="info-line">
+                <div class="info-line complaint-reason">
                     <span class="info-key">Complaint Reason:</span>
-                    <span class="info-value">{{Complaint.rname}}</span>
+                    <span class="info-value">{{Complaint.complaint}}</span>
                 </div>
-                <div class="info-line">
-                    <span class="info-key">Complaint severity :</span>
-                    <span class="info-value">{{Complaint.severity}}</span>
+                <div class="container-two">
+                    <div>
+                        <div class="info-line">
+                            <span class="info-key">Complaint By :</span>
+                            <span class="info-value">{{Complaint.student_email}}</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-key">Complaint Submitted at : </span>
+                            <span class="info-value">{{Complaint.submitted_at | date:'dd/MMM/yyyy'}}</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-key">Complaint Status :</span>
+                            <span class="info-value">{{Complaint.status}}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="info-line">
+                            <span class="info-key">Complaint severity :</span>
+                            <span class="info-value">{{Complaint.severity}}</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-key">Complaint Type : </span>
+                            <span class="info-value">{{Complaint.type}}</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="info-key">Complaint Location :</span>
+                            <span class="info-value">{{Complaint.location}}</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="info-line">
-                    <span class="info-key">Complaint Type : </span>
-                    <span class="info-value">{{Complaint.type}}</span>
-                </div>
-                <div class="info-line">
-                    <span class="info-key">Complaint Location :</span>
-                    <span class="info-value">{{Complaint.location}}</span>
-                </div>
-
             </div>
         </div>
     </div>
 </div>
+
+complaint
+: 
+"Noise complaints in hostels are a common issue that can significantly impact the living experience of residents. In shared living spaces like hostels, where students and individuals from diverse backgrounds come together, finding a balance between personal freedom and consideration for others is crucial.  A hostel serves as a home away from home for many. It's a place where students and young professionals reside while pursuing their education or careers. However, the close proximity of residents, combined with varying schedules and lifestyles, can lead to conflicts related to noise."
+complaintId
+: 
+1
+location
+: 
+"201"
+roomnumber
+: 
+23
+severity
+: 
+"moderate"
+status
+: 
+"unsolved"
+student_email
+: 
+"yogeshkunkawlekar12@gmail.com"
+submitted_at
+: 
+"2023-08-16T06:54:17.816Z"
+type
+: 
+"noise"

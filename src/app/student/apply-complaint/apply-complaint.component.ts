@@ -5,6 +5,7 @@ import { ApplyleaveServicesService } from '../studentmodal-services/applyleave-s
 import { NgForm } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ApplycomplaintServicesService } from '../studentmodal-services/applycomplaint-services.service';
+import { StudentdataService } from '../studentmodal-services/studentdata.service';
 
 @Component({
   selector: 'app-apply-complaint',
@@ -14,16 +15,18 @@ import { ApplycomplaintServicesService } from '../studentmodal-services/applycom
 export class ApplyComplaintComponent {
   complaintForm: FormGroup;
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
-
+  myInfo: any = []
   loading = false;
-  constructor(private formBuilder: FormBuilder, private storage: AngularFireStorage, private applycomplaintservice: ApplycomplaintServicesService, private renderer: Renderer2) {
+  constructor(private formBuilder: FormBuilder, private storage: AngularFireStorage, private applycomplaintservice: ApplycomplaintServicesService, private renderer: Renderer2, private studentinfo : StudentdataService) {
     this.complaintForm = this.formBuilder.group({
       complaintType: ['', Validators.required],
       severity: ['', Validators.required],
       incidentLocation: ['', Validators.required],
-      description: ['', Validators.required],
+      complaint: ['', Validators.required],
       attachments: [null]
     });
+    this.myInfo = this.studentinfo.getdatabaseUser()
+    console.log("My info - ",this.myInfo)
   }
 
 
@@ -58,15 +61,19 @@ export class ApplyComplaintComponent {
     console.log('Type of Complaint:', form.value.compType);
     console.log('Severity Level:', form.value.severity);
     console.log('Location:', form.value.location);
-    console.log('Relative Name:', form.value.relativename);
-    console.log("filePath ", downloadURL)
+    console.log('Relative Name:', form.value.complaint);
 
     const data = {
+      student_email: this.myInfo.student_email,
+      student_name : this.myInfo.student_name,
+      roomnumber: this.myInfo.room_number,
+      status: "unsolved",
       type: form.value.compType,
       severity: form.value.severity,
       location: form.value.location,
-      rname: form.value.relativename,
+      complaint: form.value.complaint,
       fileurl: downloadURL,
+      submitted_at : new Date().toISOString()
     }
 
     try {

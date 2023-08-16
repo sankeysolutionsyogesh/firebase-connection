@@ -13,7 +13,7 @@
   }
   
   .modal-container {
-    width: 350px;
+    width: 80%;
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
@@ -72,3 +72,12 @@
   }
   
   
+  .info-line.complaint-reason{
+    flex-direction: column;
+  }
+
+  .container-two{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+  }

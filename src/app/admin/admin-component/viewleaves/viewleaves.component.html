@@ -1,0 +1,20 @@
+<div class="white-box">
+    <h2>Leave Application Details</h2>
+    <div class="details">
+      <p><strong>Applied At:</strong> {{ leaveInfo.applied_at | date:'medium' }}</p>
+      <p><strong>Start Date:</strong> {{ leaveInfo.startDate }}</p>
+      <p><strong>End Date:</strong> {{ leaveInfo.endDate }}</p>
+      <p><strong>Reason:</strong> {{ leaveInfo.reason }}</p>
+      <p><strong>Relative Contact:</strong> {{ leaveInfo.relativeContact }}</p>
+      <p><strong>Relative Name:</strong> {{ leaveInfo.relativeName }}</p>
+      <p><strong>Room Number:</strong> {{ leaveInfo.room_number }}</p>
+      <p><strong>Status:</strong> {{ leaveInfo.status ? 'Approved' : 'Pending' }}</p>
+      <p><strong>Student Email:</strong> {{ leaveInfo.student_email }}</p>
+      <p><strong>Student Name:</strong> {{ leaveInfo.student_name }}</p>
+    </div>
+    <div>
+      <button>Approve</button>
+      <button>Reject</button>
+    </div>
+  </div>
+  

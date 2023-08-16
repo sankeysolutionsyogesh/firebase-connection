@@ -12,5 +12,7 @@ export class AdminHomeComponent {
     { label: 'Employees', link: './employee' },
     { label: 'Student', link: './student' }
   ];
+
+  role="Admin"
   
 }

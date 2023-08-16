@@ -24,7 +24,7 @@ export class LoginDataService {
         console.log("Sucecs", res)
         const idToken = res?.credential.idToken;
         if (idToken) {
-          this.setToken(idToken)
+          this.setToken(idToken, 'Student')
           console.log(res.additionalUserInfo)
 
           const additionalUserInfo = res.additionalUserInfo;
@@ -44,14 +44,14 @@ export class LoginDataService {
             this.db.object(`students/details/${profile.id}`).valueChanges().subscribe((studentData: any) => {
               if (studentData) {
                 // Do something with the retrieved student data
-                
+
                 console.log(studentData);
               } else {
                 this.studentService.addStudent(data)
                 console.log('Student not found');
               }
             });
-            
+
 
 
             // console.log("All details ", additionalUserInfo)
@@ -59,7 +59,7 @@ export class LoginDataService {
             // console.log("Is New User?", isNewUser);
           }
           // this.setloggedDetails(res.additionalUserInfo)
-          this.router.navigate(['home']);
+          this.router.navigate(['student']);
           return true;
         } else {
           return false
@@ -86,21 +86,38 @@ export class LoginDataService {
   }
 
 
-  setToken(token: string): void {
+  setToken(token: string, role: string): void {
+    localStorage.setItem('role', role);
     localStorage.setItem('token', token);
   }
+
 
   getToken(): string | null {
     return localStorage.getItem('token');
   }
 
-  isLoggedIn() {
-    return this.getToken() !== null;
+  getRole(): string | null {
+    return localStorage.getItem('role');
+  }
+
+  isLoggedIn(role: string): boolean {
+
+    const token = this.getToken();
+
+    if (token !== null) {
+
+      const userRole = this.getRole();
+      console.log('token', userRole, );
+
+      return userRole === role;
+    }
+    return false;
   }
 
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('role');
     this.router.navigate(['login']);
   }
 

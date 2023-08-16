@@ -9,6 +9,8 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { StudentHomeComponent } from './student/student-home/student-home.component';
 import { ApplyComplaintComponent } from './student/apply-complaint/apply-complaint.component';
 import { ApplyLeaveComponent } from './student/apply-leave/apply-leave.component';
+import { ViewleavesComponent } from './admin/admin-component/viewleaves/viewleaves.component';
+import { adminauthGuard } from 'src/services/guards/adminauth.guard';
 
 const routes: Routes = [
   {
@@ -16,13 +18,13 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'home',
-    canActivate: [authGuard],
+    path: 'admin',
+    canActivate: [adminauthGuard],
     component: AdminHomeComponent,
     children: [
       { path: 'student', component: StudentsComponent },
+      { path: 'viewleave/:id', component: ViewleavesComponent },
     ]
-
   },
   {
     path: 'student',
@@ -30,13 +32,12 @@ const routes: Routes = [
     component: StudentHomeComponent,
     children: [
       { path: 'apply-complaint', component: ApplyComplaintComponent },
-      { path: 'apply-leave', component: ApplyLeaveComponent },
-
+      { path: 'apply-leave', component: ApplyLeaveComponent},
     ]
 
   },
 
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: "**", pathMatch: 'full', component: PagenotfoundComponent }
 
 
