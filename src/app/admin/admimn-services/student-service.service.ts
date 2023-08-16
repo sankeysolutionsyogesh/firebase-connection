@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class StudentServiceService {
 
   totalStudents: any = null;
-  lastSid : number = 0;
+  lastSid: number = 0;
 
   constructor(private db: AngularFireDatabase) {
     this.getlastdata()
@@ -22,11 +22,11 @@ export class StudentServiceService {
     return this.db.list('students-list').valueChanges();
   }
 
-  getStudentsComplaint(): Observable<any[]>{
+  getStudentsComplaint(): Observable<any[]> {
     return this.db.list('students-complaint').valueChanges();
   }
 
-  getStudentsleaves(): Observable<any[]>{
+  getStudentsleaves(): Observable<any[]> {
     return this.db.list('students-leave').valueChanges();
   }
 
@@ -37,7 +37,7 @@ export class StudentServiceService {
 
     studentsRef.snapshotChanges().subscribe(data => {
       if (data.length > 0) {
-        const lastAddedStudent:any = data[0].payload.val();
+        const lastAddedStudent: any = data[0].payload.val();
         this.lastSid = lastAddedStudent.sid
 
         console.log('Last added student:', lastAddedStudent);
@@ -45,6 +45,31 @@ export class StudentServiceService {
     });
 
   }
+  updateStudentStatus(id: any, Inputstatus:boolean) {
+    console.log("Upodating", id)
+    const studentsRef = this.db.list('students-leave', ref =>
+      ref.orderByChild('leaveId').equalTo(id)
+    );
+
+    studentsRef.snapshotChanges().subscribe((snapshots) => {
+      snapshots.forEach((snapshot) => {
+        const key: any = snapshot.key;
+
+        const updatedData = { status: Inputstatus }; // Update the status field to true
+
+        studentsRef.update(key, updatedData)
+          .then(() => {
+            return { message: "Successfully updated status" };
+          })
+          .catch((error) => {
+            return { message: `Error while updating status - ${error}` };
+          });
+      });
+    });
+
+  }
+
+
 
   registerStudent(data: any): Promise<void> {
     data.sid = this.lastSid + 1;
@@ -53,7 +78,7 @@ export class StudentServiceService {
       studentsRef.push(data)
         .then(() => {
           // Alert when student is added
-          window.alert('Student added successfully!');
+          // window.alert('Student added successfully!');
           resolve();
         })
         .catch(error => {
@@ -63,7 +88,7 @@ export class StudentServiceService {
     });
   }
 
-  getSingleLeaves(id:any){
+  getSingleLeaves(id: any) {
     const studentsRef = this.db.list('students-leave', ref =>
       ref.orderByChild('leaveId').equalTo(id)
     );

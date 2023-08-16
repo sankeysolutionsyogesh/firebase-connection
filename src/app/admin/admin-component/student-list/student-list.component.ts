@@ -8,6 +8,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent {
+  removeAddStudentPage: any = false;
 
   StudentList: any[] = [];
   displayedColumns: string[] = ['sid', 'student_name', 'room_number', 'gender', 'fees_paid', 'actions'];
@@ -23,6 +24,7 @@ export class StudentListComponent {
       console.log("data", data)
     });
   }
+  
   Deleteaction(id: number) {
     const result = this.studentservice.deleteStudent(id)
     this.getStudentAction()
@@ -39,6 +41,14 @@ export class StudentListComponent {
       verticalPosition: this.verticalPosition,
       duration: 3 * 1000,
     });
+  }
+  Add_Student(){
+    this.removeAddStudentPage = true;
+  }
+
+  View_Student(){
+    this.removeAddStudentPage = false;
+
   }
 
 }

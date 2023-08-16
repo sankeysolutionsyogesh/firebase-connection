@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { StudentServiceService } from '../../admimn-services/student-service.service';
 
@@ -9,6 +9,7 @@ import { StudentServiceService } from '../../admimn-services/student-service.ser
   styleUrls: ['./form-component.component.css']
 })
 export class FormComponentComponent {
+  @Input() StudentDetails : any = {}
 
   formData = {
     feesPaid: 0.0,

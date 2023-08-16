@@ -12,6 +12,9 @@ export class StudentdataService {
     return this.db.object(user);
   }
 
+ 
+
+
   getAllStudents(){
     return this.db.list('students').valueChanges();
   }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 
@@ -7,15 +8,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StudentdataService {
+  constructor(private db: AngularFireDatabase, private router: Router) {  }
 
-
-  constructor(private db: AngularFireDatabase) {
-    const emailToSearch = 'yogeshkunkawlekar12@gmail.com'; // Replace with the email you want to search for
-    const data = this.getStudentData()
-
-    this.getUserByEmail(data?.profile.email).subscribe(data => {
-      this.setdatabaseUser(data)
-    });
+  getStudentByEmail(email: any): any {
+    if (email != null) {
+      const studentsRef = this.db.list('students-list', ref =>
+        ref.orderByChild('student_email').equalTo(email)
+      );
+      return studentsRef.valueChanges();
+    } else {
+      return [];
+    }
   }
 
   getStudentData() {
@@ -36,7 +39,7 @@ export class StudentdataService {
 
   getdatabaseUser() {
     const data: any = localStorage.getItem('myInfo')
-    const data1 =  JSON.parse(data);
+    const data1 = JSON.parse(data);
     return data1[0]
   }
 }

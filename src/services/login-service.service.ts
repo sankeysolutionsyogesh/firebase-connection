@@ -34,33 +34,28 @@ export class LoginDataService {
             const profile = additionalUserInfo.profile;
             const isNewUser = additionalUserInfo.isNewUser;
 
+          
             this.setloggedDetails(additionalUserInfo)
+            this.router.navigate(['student']);
+            
+            // this.db.object(`students/details/${profile.id}`).valueChanges().subscribe((studentData: any) => {
+            //   if (studentData) {
+            //     // Do something with the retrieved student data
 
-            const data = {
-              details: profile,
-              role: 'Student'
-            }
-
-            this.db.object(`students/details/${profile.id}`).valueChanges().subscribe((studentData: any) => {
-              if (studentData) {
-                // Do something with the retrieved student data
-
-                console.log(studentData);
-              } else {
-                this.studentService.addStudent(data)
-                console.log('Student not found');
-              }
-            });
+            //     console.log(studentData);
+            //   } else {
+            //     this.studentService.addStudent(data)
+            //     console.log('Student not found');
+            //   }
+            // });
 
 
 
             // console.log("All details ", additionalUserInfo)
-            console.log("Google Profile:", profile.id);
             // console.log("Is New User?", isNewUser);
           }
           // this.setloggedDetails(res.additionalUserInfo)
-          this.router.navigate(['student']);
-          return true;
+          return true
         } else {
           return false
         }
@@ -107,7 +102,7 @@ export class LoginDataService {
     if (token !== null) {
 
       const userRole = this.getRole();
-      console.log('token', userRole, );
+      console.log('token', userRole,);
 
       return userRole === role;
     }

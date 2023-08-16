@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StudentServiceService } from '../../admimn-services/student-service.service';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -10,11 +11,10 @@ import { StudentServiceService } from '../../admimn-services/student-service.ser
 })
 export class ViewleavesComponent implements OnInit {
   id: any = null;
-  leaveInfo :any = {
-    
-  }
+  leaveInfo: any = {}
+  loading: boolean = true
 
-  constructor(private route: ActivatedRoute, private leaveservices: StudentServiceService) { 
+  constructor(private datePipe: DatePipe, private route: ActivatedRoute, private leaveservices: StudentServiceService) {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id !== null) {
@@ -22,9 +22,8 @@ export class ViewleavesComponent implements OnInit {
         this.leaveservices.getSingleLeaves(this.id).subscribe((data): any => {
           console.log("Leaves", data[0])
           this.leaveInfo = data[0]
+          this.loading = false
         });
-        
-
       }
       // this.id = parseInt(id)
       console.log("ID", this.id)
@@ -33,7 +32,21 @@ export class ViewleavesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  }
+
+  Approval(event: any) {
+    console.log(event);
     
+    this.leaveservices.updateStudentStatus(this.leaveInfo.leaveId, event)
+
+  }
+
+  formatDateWithDay(date: any): string {
+    const formattedDate = this.datePipe.transform(date, 'dd-MMM-YYYY');
+    const dayOfWeek = this.datePipe.transform(date, 'EEEE'); // EEEE gives full day name
+
+    return `${formattedDate} (${dayOfWeek})`;
   }
 
 

@@ -1,25 +1,35 @@
-.white-box {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-  }
-  
-  .details {
-    margin-top: 15px;
-    text-align: justify;
-  }
-  
-  .details p {
-    margin: 5px 0;
-  }
-  
-  h2 {
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  p {
-    color: black;
-  }
+.letter {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.content {
+  margin-bottom: 20px;
+}
+
+.footer {
+  text-align: center;
+}
+
+.student-info {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-align: center;
+
+}
+
+.student-info p {
+  margin: 5px 0;
+}

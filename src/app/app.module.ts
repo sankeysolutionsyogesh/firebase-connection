@@ -24,9 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
-import {
-  MatSnackBarModule,
-} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgIf} from '@angular/common';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -46,7 +44,10 @@ import { StudentLeavesComponent } from './admin/admin-component/student-leaves/s
 import {MatCardModule} from '@angular/material/card';
 import { SinglecomplaintComponent } from './admin/admin-component/singlecomplaint/singlecomplaint.component';
 import { ViewleavesComponent } from './admin/admin-component/viewleaves/viewleaves.component';
-
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
+import { UnauthoriedUserComponent } from './components/unauthoried-user/unauthoried-user.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { ViewleavesComponent } from './admin/admin-component/viewleaves/viewleav
     StudentComplaintComponent,
     StudentLeavesComponent,
     SinglecomplaintComponent,
-    ViewleavesComponent
+    ViewleavesComponent,
+    UnauthoriedUserComponent
   ],
   imports: [
     BrowserModule,
@@ -94,9 +96,11 @@ import { ViewleavesComponent } from './admin/admin-component/viewleaves/viewleav
     MatProgressBarModule,
     MatProgressSpinnerModule,
     CKEditorModule,
-    MatCardModule
+    MatCardModule,
+    MatDividerModule,
+    MatListModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

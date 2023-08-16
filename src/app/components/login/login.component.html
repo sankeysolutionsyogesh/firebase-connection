@@ -1,6 +1,6 @@
 <div class="login-container">
-    <mat-card>
-        <mat-card-title>Login</mat-card-title>
+    <mat-card class="inner-container">
+        <mat-card-title class="title-admin">Login with Admin</mat-card-title>
         <mat-card-content>
             <form (ngSubmit)="onSubmit()">
                 <mat-form-field appearance="outline" class="full-width">
@@ -14,12 +14,32 @@
                         name="password" required>
                 </mat-form-field>
 
-                <div class="Button-action">
-                    <button mat-raised-button color="primary" type="submit">Login</button>
-                    <button mat-raised-button color="accent" type="button" (click)="LoginGoogle()">Google</button>
+                <div *ngIf="!loading else loaderShow " class="Button-action">
+                    <button mat-raised-button color="primary" type="submit">Login
+                        for admin</button>
                 </div>
 
             </form>
         </mat-card-content>
+        <mat-divider class="divider-size"></mat-divider>
+        <mat-card-title class="title-student">Login with Student</mat-card-title>
+        <!-- <div class="Button-action">
+            <div class="circular-logo">
+                <img src="assets/images/google_logo.png" alt="Google Logo" (click)="LoginGoogle()">
+            </div>
+        </div> -->
+
+        <div class="Button-action">
+            <div *ngIf="!loading else loaderShow " class="circular-logo" (click)="LoginGoogle()">
+                <img src="assets/images/google_logo.png" alt="Google Logo">
+            </div>
+            <!-- <button mat-raised-button color="accent" type="button" (click)="LoginGoogle()">Google login for st</button> -->
+           
+        </div>
+
     </mat-card>
+    <ng-template #loaderShow class="custom-spinner-container">
+        <mat-spinner color="accent"></mat-spinner>
+
+    </ng-template>
 </div>

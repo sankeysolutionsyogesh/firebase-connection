@@ -1,0 +1,42 @@
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.button {
+    padding: 10px 20px;
+    color: #070707;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.active-link {
+    background-color: #0056b3; /* Change this to the desired active color */
+}
+
+.button-left {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-right: 1px solid white;
+}
+
+.button-right {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-left: 1px solid white;
+
+}
+
+.button:hover {
+    background-color: #007bff;
+}
+
+.active-link:hover {
+    background-color: #0056b3; /* Change this to the desired active color */
+}

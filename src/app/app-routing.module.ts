@@ -11,6 +11,10 @@ import { ApplyComplaintComponent } from './student/apply-complaint/apply-complai
 import { ApplyLeaveComponent } from './student/apply-leave/apply-leave.component';
 import { ViewleavesComponent } from './admin/admin-component/viewleaves/viewleaves.component';
 import { adminauthGuard } from 'src/services/guards/adminauth.guard';
+import { UnauthoriedUserComponent } from './components/unauthoried-user/unauthoried-user.component';
+import { StudentListComponent } from './admin/admin-component/student-list/student-list.component';
+import { StudentLeavesComponent } from './admin/admin-component/student-leaves/student-leaves.component';
+import { StudentComplaintComponent } from './admin/admin-component/student-complaint/student-complaint.component';
 
 const routes: Routes = [
   {
@@ -18,12 +22,23 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'unathorised',
+    component: UnauthoriedUserComponent
+  },
+  {
     path: 'admin',
     canActivate: [adminauthGuard],
     component: AdminHomeComponent,
     children: [
-      { path: 'student', component: StudentsComponent },
-      { path: 'viewleave/:id', component: ViewleavesComponent },
+      {
+        path: 'student', component: StudentsComponent, children: [
+          { path: 'view-complaint', component: StudentComplaintComponent },
+          { path: 'view-leave', component: StudentLeavesComponent },
+          { path: 'view-students-list', component: StudentListComponent },
+          { path: 'view-leave/:id', component: ViewleavesComponent },
+        ]
+      },
+      // { path: 'viewleave/:id', component: ViewleavesComponent },
     ]
   },
   {
@@ -32,7 +47,9 @@ const routes: Routes = [
     component: StudentHomeComponent,
     children: [
       { path: 'apply-complaint', component: ApplyComplaintComponent },
-      { path: 'apply-leave', component: ApplyLeaveComponent},
+      { path: 'apply-leave', component: ApplyLeaveComponent },
+
+
     ]
 
   },

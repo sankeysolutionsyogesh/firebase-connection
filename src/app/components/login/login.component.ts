@@ -9,10 +9,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  
-  loginError: boolean = false;
 
-  constructor(private snackBar: MatSnackBar,private loginService : LoginDataService, private router: Router){}
+  loginError: boolean = false;
+  loading: boolean = false;
+  constructor(private snackBar: MatSnackBar, private loginService: LoginDataService, private router: Router) { }
 
   username: string = '';
   password: string = '';
@@ -32,9 +32,10 @@ export class LoginComponent {
     }
   }
 
-  LoginGoogle(){
-    const result =  this.loginService.LoginGooglePopUP()
-   
+  LoginGoogle() {
+    this.loading = true;
+    this.loginService.LoginGooglePopUP()
+
   }
 
   loginForAdmin(): void {
@@ -57,18 +58,17 @@ export class LoginComponent {
     //   });
   }
 
-  ngOnInit():void{
-  
-    const role = this.loginService.getRole()
-    console.log("User deatils",role)
-    if(role === 'Admin'){
-      this.router.navigate(['admin'])
-    }else if (role === 'Student'){
-      this.router.navigate(['student'])
+  ngOnInit(): void {
 
-    }else{
+    const role = this.loginService.getRole()
+    console.log("User deatils", role)
+    if (role === 'Admin') {
+      this.router.navigate(['admin'])
+    } else if (role === 'Student') {
+      this.router.navigate(['student'])
+    } else {
       console.log("Not logged")
     }
-   
-  } 
+
+  }
 }

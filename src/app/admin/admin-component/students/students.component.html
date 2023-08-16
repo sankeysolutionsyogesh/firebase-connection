@@ -1,15 +1,23 @@
 <div class="student-container">
+    <div class="button-group">
+        <button class="button button-left" routerLink="./view-complaint" routerLinkActive="active-link">Complaints</button>
+        <button class="button" routerLink="./view-students-list" routerLinkActive="active-link">Students</button>
+        <button class="button button-right" routerLink="./view-leave" routerLinkActive="active-link">Leaves</button>
+    </div>
+    
+
+    <router-outlet></router-outlet>
     <!-- Toggle button to toggle in adduser and displayStudent -->
-    {{'Show Students'}}
+    <!-- {{'Show Students'}}
     <mat-slide-toggle [(ngModel)]="removeAddStudentPage">
         {{ 'Add Student' }}
     </mat-slide-toggle>
-    <br><br>
+    <br><br> -->
 
 
     <!-- Display body  -->
     <ng-container *ngIf="!removeAddStudentPage; else addStudent">
-        <app-student-list></app-student-list>
+        
         <!-- <app-getstudentlist [StudentData]="StudentData" (Delete)="Deleteaction($event)" (Edit)="Editaction($event)"></app-getstudentlist>
         <app-pagination [totalPages]="totalPages" [currentPage]="currentPage" [nexPage]="nexPage"
             [previousPage]="previousPage" (nextPage)="loadNextPage()" (prevPage)="loadPrevPage()">
@@ -22,7 +30,7 @@
         <app-form-component></app-form-component>
     </ng-template>
 
-    <br>
+    <!-- <br>
 
     <h2>Student Complaints</h2>
 
@@ -30,6 +38,6 @@
 
     <h2>Student Leaves</h2>
 
-    <app-student-leaves></app-student-leaves>
+    <app-student-leaves></app-student-leaves> -->
 
 </div>

@@ -1,44 +1,56 @@
+<ng-container *ngIf="!removeAddStudentPage; else addStudent">
 
-<div class="table-conatiner">
-    <table mat-table class="mat-elevation-z8" [dataSource]="StudentList">
-        <ng-container matColumnDef="sid">
-            <th mat-header-cell *matHeaderCellDef>ID</th>
-            <td mat-cell *matCellDef="let student">{{ student.sid }}</td>
-        </ng-container>
+    <div class="table-conatiner">
+        <button mat-raised-button color="primary" type="submit" (click)="Add_Student()">Add Student</button>
+        <table mat-table class="mat-elevation-z8" [dataSource]="StudentList">
+            <ng-container matColumnDef="sid">
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+                <td mat-cell *matCellDef="let student">{{ student.sid }}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="student_name">
-            <th mat-header-cell *matHeaderCellDef>Student Name</th>
-            <td mat-cell *matCellDef="let student">{{ student.student_name }}</td>
-        </ng-container>
+            <ng-container matColumnDef="student_name">
+                <th mat-header-cell *matHeaderCellDef>Student Name</th>
+                <td mat-cell *matCellDef="let student">{{ student.student_name }}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="room_number">
-            <th mat-header-cell *matHeaderCellDef>Room Number</th>
-            <td mat-cell *matCellDef="let student">{{ student.room_number }}</td>
-        </ng-container>
+            <ng-container matColumnDef="room_number">
+                <th mat-header-cell *matHeaderCellDef>Room Number</th>
+                <td mat-cell *matCellDef="let student">{{ student.room_number }}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="gender">
-            <th mat-header-cell *matHeaderCellDef>Gender</th>
-            <td mat-cell *matCellDef="let student">{{ student.gender }}</td>
-        </ng-container>
+            <ng-container matColumnDef="gender">
+                <th mat-header-cell *matHeaderCellDef>Gender</th>
+                <td mat-cell *matCellDef="let student">{{ student.gender }}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="fees_paid">
-            <th mat-header-cell *matHeaderCellDef>Fee Paid</th>
-            <td mat-cell *matCellDef="let student">{{ student.fees_paid }}</td>
-        </ng-container>
+            <ng-container matColumnDef="fees_paid">
+                <th mat-header-cell *matHeaderCellDef>Fee Paid</th>
+                <td mat-cell *matCellDef="let student">{{ student.fees_paid }}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef>Action</th>
-            <td mat-cell *matCellDef="let student">
-                <button mat-icon-button (click)="Deleteaction(student.sid)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-                <button mat-icon-button (click)="EditAction(student)">
-                    <mat-icon>edit</mat-icon>
-                </button>
-            </td>
-        </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let student">
+                    <button mat-icon-button (click)="Deleteaction(student.sid)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="EditAction(student)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-</div>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <!-- <app-getstudentlist [StudentData]="StudentData" (Delete)="Deleteaction($event)" (Edit)="Editaction($event)"></app-getstudentlist>
+    <app-pagination [totalPages]="totalPages" [currentPage]="currentPage" [nexPage]="nexPage"
+        [previousPage]="previousPage" (nextPage)="loadNextPage()" (prevPage)="loadPrevPage()">
+    </app-pagination> -->
+    <br><br><br>
+</ng-container>
+<ng-template #addStudent>
+    <button mat-raised-button color="primary" type="submit" (click)="View_Student()">View Student</button>
+    <app-form-component></app-form-component>
+</ng-template>
